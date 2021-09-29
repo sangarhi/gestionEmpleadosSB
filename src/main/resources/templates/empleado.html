@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Admin</title>
+
+<!-- Bootstrap CSS CDN -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<!-- Font Awesome JS -->
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+	crossorigin="anonymous"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- Sidebar  -->
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-header">
+				<h3>Bootstrap Sidebar</h3>
+			</div>
+
+			<ul class="list-unstyled components">
+				<p>Dummy Heading</p>
+
+				<li><a href="/index.html"><i class="fas fa-home mx-3"></i>Inicio</a>
+				</li>
+				<li><a href="/formulario.html" class="active current"><i
+						class="fas fa-th-list mx-3"></i>Formulario</a></li>
+
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content">
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn"
+						style="background-color: #444444; color: #fff;">
+						<i class="fas fa-align-left me-2"></i> <span>Desplegar</span>
+					</button>
+				</div>
+			</nav>
+
+			<section id="main-content">
+				<div class="row">
+					<div class="col-lg-6">
+						<h3 class="page-header">
+							<i class="fas fa-table"></i> Form Validation
+						</h3>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="#">Library</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Data</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- Form validations -->
+				<div class="row ">
+					<div class="col-lg-10">
+						<section class="card">
+							<header class="card-header"> Form validations </header>
+							<div class="card-body">
+								<div class="form">
+									<form class="form-validate form-horizontal" method="POST"
+										th:action="@{/empleado/} + ${empleado.id}"
+										th:object="${empleado}">
+										<div class="form-group row">
+											<label for="nombre" class="col-lg-2">Nombre <span
+												class="required">*</span></label>
+											<div class="col-lg-10">
+												<input class="form-control" id="nombre" name="nombre"
+													th:field="*{nombre}" minlength="5" type="text"
+													placeholder="Nombre" required />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="telefono" class="col-lg-2">Teléfono <span
+												class="required">*</span></label>
+											<div class="col-lg-10">
+												<input class="form-control" id="telefono" type="text"
+													name="telefono" th:field="*{telefono}"
+													placeholder="Teléfono" required />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-2" for="inputSuccess">Sede</label>
+											<div class="col-lg-10">
+												<select th:field="*{sede}" id="sede" name="sede"
+													class="form-control" required>
+													<option th:each="empleadoS:${empleados}" th:value="${empleadoS}"
+														th:text="${empleadoS}" th:selected="${empleado == empleadoS}"></option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<button class="btn" type="submit"
+													style="background-color: #444444; color: #fff;">Enviar</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</section>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</div>
+
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+		integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+		integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
+
+</html>
